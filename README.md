@@ -3,6 +3,34 @@
 ## Project Layout
 - `backend/rescuelink-backend` (Spring Boot + MySQL)
 - `frontend/rescuelink-ui` (React + Bootstrap)
+- `docker-compose.yml` (full-stack deployment with MySQL, backend, and frontend)
+
+## Quick Deploy With Docker
+1. Install Docker Desktop or Docker Engine with Compose support.
+2. Copy `.env.example` to `.env`.
+3. Update the secrets in `.env`, especially `MYSQL_PASSWORD` and `MYSQL_ROOT_PASSWORD`.
+4. Keep `.env` files local only and never commit real secrets to the repository.
+5. From the project root, run:
+   ```bash
+   docker compose --env-file .env up --build -d
+   ```
+6. Open the app at:
+   - `http://localhost`
+
+Default deployed services:
+- Frontend: port `80`
+- Backend: internal container port `8080`
+- MySQL: port `3306`
+
+To stop the deployed stack:
+```bash
+docker compose down
+```
+
+To stop it and remove the database volume:
+```bash
+docker compose down -v
+```
 
 ## Prerequisites
 - Java 17+
@@ -17,7 +45,7 @@
    ```
 2. Create DB user:
    ```sql
-   CREATE USER IF NOT EXISTS 'rescuelink_user'@'localhost' IDENTIFIED BY 'Rescue@123';
+   CREATE USER IF NOT EXISTS 'rescuelink_user'@'localhost' IDENTIFIED BY 'change_this_database_password';
    GRANT ALL PRIVILEGES ON rescuelink.* TO 'rescuelink_user'@'localhost';
    FLUSH PRIVILEGES;
    ```
@@ -32,7 +60,7 @@ Optional environment overrides:
 ```powershell
 $env:DB_URL="jdbc:mysql://localhost:3306/rescuelink?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
 $env:DB_USERNAME="rescuelink_user"
-$env:DB_PASSWORD="Rescue@123"
+$env:DB_PASSWORD="change_this_database_password"
 ```
 
 Core endpoints:
@@ -51,9 +79,12 @@ Core endpoints:
 ## Phase 3: Run Frontend
 ```bash
 cd frontend/rescuelink-ui
+copy .env.example .env
 npm install
 npm start
 ```
+
+Set `REACT_APP_GOOGLE_MAPS_API_KEY` in `frontend/rescuelink-ui/.env` with your own local Google Maps API key.
 
 App URL:
 - `http://localhost:3000`

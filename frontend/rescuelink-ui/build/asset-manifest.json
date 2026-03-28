@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/static/css/main.9dfde603.css",
-    "main.js": "/static/js/main.d164b0a3.js",
+    "main.js": "/static/js/main.23d6d7c0.js",
     "static/media/RescueLink_Logo_Cropped.png": "/static/media/RescueLink_Logo_Cropped.f2b6abd837a6a2745974.png",
     "index.html": "/index.html",
     "main.9dfde603.css.map": "/static/css/main.9dfde603.css.map",
-    "main.d164b0a3.js.map": "/static/js/main.d164b0a3.js.map"
+    "main.23d6d7c0.js.map": "/static/js/main.23d6d7c0.js.map"
   },
   "entrypoints": [
     "static/css/main.9dfde603.css",
-    "static/js/main.d164b0a3.js"
+    "static/js/main.23d6d7c0.js"
   ]
 }
